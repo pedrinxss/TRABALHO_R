@@ -76,10 +76,23 @@ att_utah <- df_utah %>%  filter(Ano >= 1989)
 #arrumando dados
 
 att_alaska <- transform(att_alaska, População = as.numeric(População))
-att_alaska <- mutate(att_alaska,'População' = População*1000)
+att_alaska <- mutate(att_alaska,'População' = População*1000) 
+att_alaska <- att_alaska %>% mutate(across('População',str_replace,'.',','))
 
-att_florida <- transform(att_florida, População = as.numeric(as.factor(População)))
-att_florida <- mutate(att_florida,'População' = População*10)
+
+
+att_florida <- att_florida %>% mutate(across('População',str_replace,'132.895','13,289.500'))
+att_florida <- att_florida %>% mutate(across('População',str_replace,'1.263.771','12,637.710'))
+att_florida <- att_florida %>% mutate(across('População',str_replace,'1.301.836','13,018.360'))
+att_florida <- att_florida %>% mutate(across('População',str_replace,'1.350.478','13,504.780'))
+att_florida <- att_florida %>% mutate(across('População',str_replace,'1.371.359','13,713.590'))
+att_florida <- att_florida %>% mutate(across('População',str_replace,'139.618','13,961,800'))
+att_florida <- att_florida %>% mutate(across('População',str_replace,'141.854','14,185.400'))
+att_florida <- att_florida %>% mutate(across('População',str_replace,'1.442.691','14,426.910'))
+att_florida <- att_florida %>% mutate(across('População',str_replace,'1.468.335','14,683.350'))
+att_florida <- att_florida %>% mutate(across('População',str_replace,'1.490.823','14,908.230'))
+att_florida <- att_florida %>% mutate(across('População',str_replace,'1.511.124','15,111.240'))
+
 
 att_northDakota <- transform(att_northDakota, População = as.numeric(População))
 att_northDakota <- mutate(att_northDakota,'População' = População*1000)
@@ -87,4 +100,27 @@ att_northDakota <- mutate(att_northDakota,'População' = População*1000)
 att_southDakota <- transform(att_southDakota, População = as.numeric(População))
 att_southDakota <- mutate(att_southDakota,'População' = População*1000)
 
+att_texas <- att_texas %>%mutate(across('População',str_replace,'1.680.673','16,806.730')) %>%
+                          mutate(across('População',str_replace,'1.704.471','17,044.710')) %>% 
+                          mutate(across('População',str_replace,'173.399','17,339,900')) %>% 
+                          mutate(across('População',str_replace,'1.765.048','17,650.480')) %>%
+                          mutate(across('População',str_replace,'1.799.676','17,996.760')) %>%
+                          mutate(across('População',str_replace,'1.833.832','18,338.320')) %>%
+                          mutate(across('População',str_replace,'1.867.971','18,679.710')) %>%
+                          mutate(across('População',str_replace,'1.900.624','19,006.240')) %>%
+                          mutate(across('População',str_replace,'1.935.543','19,355.430')) %>%
+                          mutate(across('População',str_replace,'1.971.239','19,712.390')) %>%
+                          mutate(across('População',str_replace,'2.004.414','20,044.140'))
+
+att_california <- att_california %>%mutate(across('População',str_replace,'','')) %>%
+                          mutate(across('População',str_replace,'','')) %>% 
+                          mutate(across('População',str_replace,'','')) %>% 
+                          mutate(across('População',str_replace,'','')) %>%
+                          mutate(across('População',str_replace,'','')) %>%
+                          mutate(across('População',str_replace,'','')) %>%
+                          mutate(across('População',str_replace,'','')) %>%
+                          mutate(across('População',str_replace,'','')) %>%
+                          mutate(across('População',str_replace,'','')) %>%
+                          mutate(across('População',str_replace,'','')) %>%
+                          mutate(across('População',str_replace,'',''))
 
