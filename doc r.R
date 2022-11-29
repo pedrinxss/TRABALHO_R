@@ -75,9 +75,10 @@ att_utah <- df_utah %>%  filter(Ano >= 1989)
 
 #arrumando dados
 
+str(att_alaska)
 att_alaska <- transform(att_alaska, População = as.numeric(População))
 att_alaska <- mutate(att_alaska,'População' = População*1000) 
-att_alaska <- att_alaska %>% mutate(across('População',str_replace,'.',','))
+
 
 
 
@@ -100,7 +101,7 @@ att_northDakota <- mutate(att_northDakota,'População' = População*1000)
 att_southDakota <- transform(att_southDakota, População = as.numeric(População))
 att_southDakota <- mutate(att_southDakota,'População' = População*1000)
 
-att_texas <- att_texas %>%mutate(across('População',str_replace,'1.680.673','16,806.730')) %>%
+att_texas <- att_texas %>%mutate(across('População',str_replace,'1.680.673','16,807')) %>%
                           mutate(across('População',str_replace,'1.704.471','17,044.710')) %>% 
                           mutate(across('População',str_replace,'173.399','17,339,900')) %>% 
                           mutate(across('População',str_replace,'1.765.048','17,650.480')) %>%
@@ -124,3 +125,20 @@ att_california <- att_california %>%mutate(across('População',str_replace,'','
                           mutate(across('População',str_replace,'','')) %>%
                           mutate(across('População',str_replace,'',''))
 
+conv_num <- function (x){
+  x <- na.omit
+  x <- as.numeric(x$População)
+  return (x)
+}
+
+
+str(att_texas)
+conv_num(att_texas)
+na.omit(att_texas, População)
+str(att_texas)
+
+conv_num(att_texas)
+
+valor <- as.numeric(as.character(att_texas))
+
+haha <- transform(att_texas, População = as.factor(População))
