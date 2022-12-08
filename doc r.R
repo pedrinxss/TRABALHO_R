@@ -93,11 +93,15 @@ att_florida <- att_florida %>% mutate(across('População',str_replace,'1.490.82
 att_florida <- att_florida %>% mutate(across('População',str_replace,'1.511.124','15,111.240'))
 
 
-att_northDakota <- transform(att_northDakota, População = as.numeric(População))
-att_northDakota <- mutate(att_northDakota,'População' = População*1000)
+att_northDakota<- transform(att_northDakota, População = as.numeric(População))
+att_northDakota<- transform(att_northDakota, População = as.character(População))
+str(att_northDakota)
+att_northDakota<- mutate(att_northDakota,População = População*1000)
 
 att_southDakota <- transform(att_southDakota, População = as.numeric(População))
-att_southDakota <- mutate(att_southDakota,'População' = População*1000)
+att_southDakota <- transform(att_southDakota, População = as.character(População))
+str(att_southDakota)
+att_southDakota <- mutate(att_southDakota,População = População*1000)
 
 att_texas <- att_texas %>%mutate(across('População',str_replace,'1.680.673','16,806.730')) %>%
                           mutate(across('População',str_replace,'1.704.471','17,044.710')) %>% 
@@ -136,46 +140,14 @@ att_pennsylvania <- att_pennsylvania %>%mutate(across('População',str_replace,
 #
 
 
-conv_num <- function (x){
-  x <- na.omit
-  x <- as.numeric(x$População)
-  return (x)
-}
-
-
-str(att_texas)
-conv_num(att_texas)
-na.omit(att_texas, População)
-str(att_texas)
-
-conv_num(att_texas)
-
-valor <- as.numeric(as.character(att_texas))
-
-haha <- transform(att_texas, População = as.factor(População))
-
-
-
-
-
-TESTE <- bind_rows(att_alabama, att_alaska, att_california)
-
-
-teste <- left_join(att_alabama, att_alaska)
-rm(teste)
-
 
 testeee <- rbind(att_alabama,att_alaska, att_california, att_colorado, att_florida, att_georgia, att_idaho, att_indiana,
       att_kentucky, att_louisiana, att_mississipi, att_nevada, att_newYork, att_northDakota, att_oklahoma,
       att_oregon, att_pennsylvania, att_southDakota, att_tennessee, att_texas, att_utah)
 
-
 parse_number(testeee$População)
 
-
-x <- testeee
-
-teste2 <- x %>% mutate(População = parse_number(População))
+testeee <- testeee %>% mutate(População = parse_number(População))
 
 
-str(teste2)
+str(testeee)
