@@ -150,4 +150,10 @@ parse_number(testeee$População)
 testeee <- testeee %>% mutate(População = parse_number(População))
 
 
-str(testeee)
+numeric_northD <- dplyr::filter(testeee, Estado == 'North Dakota') %>% mutate(População = População*1000) %>%
+  transform(Ano = as.character(Ano))
+rm(x)
+str(numeric_northD)
+
+
+
